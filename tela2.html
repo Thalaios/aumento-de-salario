@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento Corrigido</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        #screen2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("https://i.imgur.com/GpPtK7g.jpg") no-repeat center/cover;
+        }
+
+        .card {
+            height: 21em;
+            background: rgba(255, 255, 255, 0.9);
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            width: 26em;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h2 {
+            color: goldenrod;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .card p {
+            margin: 6px 0;
+            font-size: 1em;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease;
+            width: 15em;
+            background: gold;
+            color: white;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        /* atributos */
+        .atributos {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-weight: bolder;
+        }
+
+        .atributo {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: aparecer 0.7s forwards;
+        }
+
+        .positivo {
+            color: green;
+            font-weight: bold;
+        }
+
+        .negativo {
+            color: red;
+            font-weight: bold;
+        }
+
+        @keyframes aparecer {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #ffeb3b, #ff5722);
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 0 20px #ffeb3b;
+            animation: slideDown 0.4s ease;
+            position: relative;
+        }
+
+        .close {
+            color: #fff;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        #percentualAumento {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .modal-content button {
+            margin: 10px 5px 0 0;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        #confirmAumento {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        #confirmAumento:hover {
+            background-color: #45a049;
+        }
+
+        #cancelAumento {
+            background-color: #e91e63;
+            color: white;
+        }
+
+        #cancelAumento:hover {
+            background-color: #d81b60;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <iframe width="0" height="0"
+        src="https://www.youtube.com/embed/6J8Uyrx56sc?autoplay=1&loop=1&playlist=6J8Uyrx56sc"
+        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <img src="https://i.pinimg.com/originals/25/26/65/252665c6c55444816d8150872588a150.gif"
+        style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1;">
+
+    <!-- Tela 2 -->
+    <div id="screen2">
+        <div class="card">
+            <h2>OBRIGADO CHEFE</h2>
+            <p><b>Atributos melhorados:</b></p>
+            <div class="atributos" style="flex-direction: column; display: flex; align-items: flex-start;margin: 19px;">
+                <p class="atributo">💰 Salário: <span class="positivo">+40%</span></p>
+                <p class="atributo">🙏 Gratidão ao chefe: <span class="positivo">+23%</span></p>
+                <p class="atributo">📜 Vontade de se demitir: <span class="negativo">-32%</span></p>
+                <p class="atributo">😡 Mau humor: <span class="negativo">-17%</span></p>
+            </div>
+            <button class="button" id="aumentoBTN" style="box-shadow: 0 5px 15px GOLD;" onclick="abrirModal()">DAR AUMENTO EXTRA</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="aumentoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 style="color: black;">Dar Aumento Extra!</h2>
+            <img src="https://static.vecteezy.com/ti/vetor-gratis/t1/70328-bob-esponja-cartoon-gratis-vetor.jpg"
+                alt="Bob Esponja" style="width: 16em; display: block; margin: 0 auto 10px;">
+            <input type="range" id="percentualAumento" min="1" max="999" value="100" oninput="atualizarValor(this.value)">
+            <span id="valorAumento">100%</span>
+            <div style="margin-top: 15px;">
+                <button id="confirmAumento">Confirmar</button>
+                <button id="cancelAumento">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("aumentoModal");
+        const btnClose = modal.querySelector(".close");
+        const cancelarr = document.getElementById("cancelAumento");
+        const confirmBtn = document.getElementById("confirmAumento");
+        const range = document.getElementById("percentualAumento");
+        const valorSpan = document.getElementById("valorAumento");
+        const atributos = document.querySelectorAll('.atributo');
+
+        // Animação automática dos atributos
+        atributos.forEach((a, i) => {
+            a.style.animationDelay = `${i * 0.5}s`;
+        });
+
+        // Atualiza valor do range
+        function atualizarValor(v) {
+            valorSpan.textContent = v + "%";
+        }
+
+        // Abrir modal
+        function abrirModal() {
+            modal.style.display = "block";
+        }
+
+        // Fechar modal
+        btnClose.onclick = () => modal.style.display = "none";
+        cancelarr.onclick = () => modal.style.display = "none";
+
+        // Fechar clicando fora
+        window.onclick = e => {
+            if (e.target == modal) modal.style.display = "none";
+        };
+
+        // Confirmar aumento
+        confirmBtn.onclick = () => {
+            alert(`Aumento de ${range.value}% confirmado! 🎉`);
+            modal.style.display = "none";
+            window.location.href = 'tela3.html';
+        };
+
+        // Botão "Cancelar" foge do mouse
+        cancelarr.addEventListener("mouseover", () => {
+            const x = Math.floor(Math.random() * 777) - 555;
+            const y = Math.floor(Math.random() * 777) - 555;
+            cancelarr.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body>
+
+</html>
